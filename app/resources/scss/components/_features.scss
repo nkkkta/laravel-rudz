@@ -1,35 +1,44 @@
-.features{
-    margin: 0 -10rem;
-    background-color: #F3F6F9;
-    &__list{
-        display: flex;
-        list-style: none;
-        padding: 60px 10rem;
-        gap: 12px;
-        .feature{
+@use '../utils/variables' as v;
+@use '../utils/mixins' as m;
+
+.feature-container{
+    background-color: v.$primary-color;
+    .features{
+        max-width: 1920px;
+        margin: 0 auto;
+        .feature--list{
             display: flex;
+            list-style: none;
+            padding: 60px 4rem;
             gap: 12px;
-            padding: 0;
-            flex: 1;
-            &__icon{
-                align-self: flex-start;
-            }
-            &__content{
+            .feature{
                 display: flex;
-                flex-direction: column;
-                .feature--header{
+                gap: 12px;
+                padding: 0;
+                flex: 1;
+                .feature--icon{
                     align-self: flex-start;
-                    font-weight: 500;
-                    font-size: 20px;
-                    margin: 0px;
                 }
-                &__description{
-                    font-weight: 300;
-                    line-height: 1.6;
-                    font-size: 16px;
-                    line-height: 160%;
+                .feature--content{
+                    display: flex;
+                    flex-direction: column;
+                    .feature--header{
+                        align-self: flex-start;
+                        font-weight: 500;
+                        font-size: 20px;
+                        margin: 0px;
+                    }
+                    .feature--description{
+                        font-weight: 300;
+                        line-height: 1.6;
+                        font-size: 16px;
+                        line-height: 160%;
+                    }
                 }
             }
         }
+    }
+    @media(max-width: v.$mobile-bp) {
+        display: none;
     }
 }
