@@ -1,0 +1,26 @@
+@use '../utils/variables' as v;
+@use '../utils/mixins' as m;
+
+.search-container{
+    flex: 1;
+    @include m.hflex;
+    background-color: v.$primary-color;
+    padding: 4px;
+    form{
+        flex: 1;
+        @include m.hflex;
+        margin-bottom: 0;
+        input{
+            border: none;
+            outline: none;
+            background-color: transparent;
+        }
+        button{
+            border: none;
+            background-color: transparent;
+        }
+    }
+    @media (max-width: v.$mobile-bp){
+        flex: 6;
+    }
+}
