@@ -36,15 +36,13 @@ yarn-error.log*
 .phpstorm.meta.php
 *.swp
 *.swo
+.vscode
 
 # OS files
 .DS_Store
 Thumbs.db
 
-# Local backup files
-*.backup
-*.sqlite
-*.sqlite-journal
+
 
 # Testing
 .phpunit.result.cache
