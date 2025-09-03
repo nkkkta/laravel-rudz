@@ -13,9 +13,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     await import('./owl.carousel.js');
 
     $(function() {
-        $(".owl-carousel").owlCarousel({
+        $(".category-slider .owl-carousel").owlCarousel({
             loop:true,
-            margin:10,
+            margin:15,
             nav:true,
             dots:true,
             responsive:{
@@ -31,4 +31,25 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     });
+
+    $(function() {
+        $(".product-slider .owl-carousel").owlCarousel({
+            loop:true,
+            margin:10,
+            nav:true,
+            dots:true,
+            responsive:{
+                0:{
+                    items:1
+                },
+                600:{
+                    items:2
+                },
+                1000:{
+                    items:4
+                }
+            }
+        });
+    });
+
 });

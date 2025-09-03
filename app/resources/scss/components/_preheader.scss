@@ -22,6 +22,7 @@
                 cursor: pointer;
                 background: transparent;
                 border: none;
+                padding-left: 0.5rem;;
             }
         }
 
@@ -40,6 +41,7 @@
         }
         &__left.is-open{
             display: flex;
+            z-index: 100;
         }
         &__right{
             @include m.hflex(40px);

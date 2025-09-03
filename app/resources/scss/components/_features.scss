@@ -3,11 +3,15 @@
 
 .feature-container{
     background-color: v.$primary-color;
+    margin-bottom: 90px;
     .features{
-        max-width: 1920px;
-        margin: 0 auto;
+        // display: flex;
+        width: 100%; 
+        // justify-content: space-between;
         .feature--list{
             display: flex;
+            margin: 0 auto;
+            max-width: 1920px;
             list-style: none;
             padding: 60px 4rem;
             gap: 12px;

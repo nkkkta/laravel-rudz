@@ -23,16 +23,16 @@
                             <g id="Menu">
                                 <rect id="Rectangle" fill-rule="nonzero" x="0" y="0" width="24" height="24">
 
-                    </rect>
+                                </rect>
                                 <line x1="5" y1="7" x2="19" y2="7" id="Path" stroke="#ffffffff" stroke-width="2" stroke-linecap="round">
 
-                    </line>
+                                </line>
                                 <line x1="5" y1="17" x2="19" y2="17" id="Path" stroke="#ffffffff" stroke-width="2" stroke-linecap="round">
 
-                    </line>
+                                </line>
                                 <line x1="5" y1="12" x2="19" y2="12" id="Path" stroke="#ffffffff" stroke-width="2" stroke-linecap="round">
 
-                    </line>
+                                </line>
                             </g>
                         </g>
                     </svg>
@@ -100,7 +100,7 @@
                             </svg>
                         </a>
                         <div class="cart-cost">
-                            $ 0.00
+                            0.00 BYN
                         </div>
                     </div>
                 </div>
@@ -109,12 +109,16 @@
         <nav class="navigation__container">
             <div class="navigation">
                 <ul>
-                    <li>Ноутбуки</li>
-                    <li>Планшеты</li>
-                    <li>Смартфоны</li>
-                    <li>Наушники</li>
-                    <li>Телевизоры</li>
-                    <li>Аксессуары</li>
+                    @foreach($root_categories as $category)
+                        <li class="root-category">
+                            {{$category->name}}
+                            {{-- <ul class="subcategories">
+                                @foreach()
+                                <li class="sub-category">
+                                </li>
+                            </ul> --}}
+                        </li>
+                    @endforeach
                 </ul>
             </div>
         </nav>
@@ -201,88 +205,135 @@
         </div>
         <div class="category-slider">
             <div class="owl-carousel">
-                <div class="category-item">
+            @foreach($root_categories as $category)
+                <div class="category-item" style="background-image: linear-gradient(90deg,#242424, transparent), url('{{ asset('storage/' . $category->image_url)}}');">
                     <div class="category-content">
-                        <h6 class="category_header">Ноутбуки</h6>
-                        <p class="category_description">Краткое описание категории</p>
+                        <h2 class="category_header">{{$category->name}}</h2>
+                        <p class="category_description">{{$category->description}}</p>
                         <button class="category_button">
                             Перейти в каталог
                         </button>
                     </div>
                 </div>
-                <div class="category-item">
-                    <div class="category-content">
-                        <h6 class="category_header">Планшеты</h6>
-                        <p class="category_description">Краткое описание категории</p>
-                        <button class="category_button">
-                            Перейти в каталог
-                        </button>
-                    </div>
-                </div>
-                <div class="category-item">
-                    <div class="category-content">
-                        <h6 class="category_header">Смартфоны</h6>
-                        <p class="category_description">Краткое описание категории</p>
-                        <button class="category_button">
-                            Перейти в каталог
-                        </button>
-                    </div>
-                </div>
-                <div class="category-item">
-                    <div class="category-content">
-                        <h6 class="category_header">Наушники</h6>
-                        <p class="category_description">Краткое описание категории</p>
-                        <button class="category_button">
-                            Перейти в каталог
-                        </button>
-                    </div>
-                </div>
-                <div class="category-item">
-                    <div class="category-content">
-                        <h6 class="category_header">Телевизоры</h6>
-                        <p class="category_description">Краткое описание категории</p>
-                        <button class="category_button">
-                            Перейти в каталог
-                        </button>
-                    </div>
-                </div>
-                <div class="category-item">
-                    <div class="category-content">
-                        <h6 class="category_header">Аксессуары</h6>
-                        <p class="category_description">Краткое описание категории</p>
-                        <button class="category_button">
-                            Перейти в каталог
-                        </button>
-                    </div>
-                </div>
+            @endforeach
             </div>
         </div>
-        <div class="product">
-
+        <div class="product-slider">
+            <div class="product-slider__header">
+                <h2>Популярные товары</h2>
+            </div>
+            <div class="owl-carousel">
+            @foreach($products as $product)
+                <div class="product-item">  
+                    <img src="{{ asset('storage/' . $product->image_url) }}" alt="{{$product->name}}" class="product-image">
+                    <div class="product-data">
+                        <div class="stars">
+                        @for ($i = 1; $i <= 5; $i++)
+                            @if ($i <= $product->rating)
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.99449 2.03278C6.64885 0.677592 6.97603 0 7.50001 0C8.02396 0 8.35112 0.677592 9.00554 2.03278L10.1374 4.37684L12.761 4.81784C14.1271 5.04748 14.8102 5.1623 14.9697 5.64173C15.1292 6.12116 14.6522 6.6259 13.6984 7.6354L11.7674 9.67885L12.1769 12.4233C12.3927 13.8696 12.5007 14.5927 12.0789 14.8917C11.6571 15.1908 11.0156 14.8459 9.73266 14.1561L7.50001 12.9557L5.26735 14.1561C3.98438 14.8459 3.3429 15.1908 2.92111 14.8917C2.49932 14.5927 2.60723 13.8696 2.82308 12.4233L3.23265 9.67885L1.30167 7.6354C0.347763 6.6259 -0.129199 6.12116 0.0302993 5.64173C0.189795 5.1623 0.872873 5.04748 2.23903 4.81784L4.86263 4.37684L5.99449 2.03278Z" fill="#FFB000"/>
+                            </svg>
+                            @else
+                            <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.99449 2.03278C6.64885 0.677592 6.97603 0 7.50001 0C8.02396 0 8.35112 0.677592 9.00554 2.03278L10.1374 4.37684L12.761 4.81784C14.1271 5.04748 14.8102 5.1623 14.9697 5.64173C15.1292 6.12116 14.6522 6.6259 13.6984 7.6354L11.7674 9.67885L12.1769 12.4233C12.3927 13.8696 12.5007 14.5927 12.0789 14.8917C11.6571 15.1908 11.0156 14.8459 9.73266 14.1561L7.50001 12.9557L5.26735 14.1561C3.98438 14.8459 3.3429 15.1908 2.92111 14.8917C2.49932 14.5927 2.60723 13.8696 2.82308 12.4233L3.23265 9.67885L1.30167 7.6354C0.347763 6.6259 -0.129199 6.12116 0.0302993 5.64173C0.189795 5.1623 0.872873 5.04748 2.23903 4.81784L4.86263 4.37684L5.99449 2.03278Z" fill="#D1D3DA"/>
+                            </svg>
+                            @endif
+                        @endfor
+                        </div>
+                        <div class="product-is-available">
+                        @if ($product->is_available)
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="16" height="16" rx="8" fill="#70BE71"/>
+                                <path d="M11.0805 5.06926C11.1301 5.01861 11.1894 4.97838 11.2548 4.95091C11.3201 4.92345 11.3903 4.9093 11.4612 4.9093C11.5321 4.9093 11.6023 4.92345 11.6677 4.95091C11.7331 4.97838 11.7923 5.01861 11.842 5.06926C12.05 5.27944 12.0529 5.61909 11.8492 5.83291L7.54879 10.9166C7.49997 10.9703 7.44072 11.0134 7.37467 11.0433C7.30861 11.0732 7.23715 11.0894 7.16465 11.0907C7.09214 11.0921 7.02012 11.0786 6.95299 11.0512C6.88586 11.0238 6.82504 10.9829 6.77423 10.9312L4.15745 8.2795C4.05653 8.17658 4 8.03819 4 7.89404C4 7.7499 4.05653 7.6115 4.15745 7.50858C4.20709 7.45794 4.26633 7.4177 4.3317 7.39024C4.39708 7.36277 4.46728 7.34862 4.53819 7.34862C4.6091 7.34862 4.6793 7.36277 4.74467 7.39024C4.81005 7.4177 4.86929 7.45794 4.91892 7.50858L7.1386 9.75808L11.066 5.08526C11.0705 5.07964 11.0753 5.07429 11.0805 5.06926Z" fill="white"/>
+                            </svg>
+                            <div class="product-is-available-text">
+                                В наличии
+                            </div>
+                        @else
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="16" height="16" rx="8" fill="#B71B34"/>
+                                <path d="M11.0805 5.06926C11.1301 5.01861 11.1894 4.97838 11.2548 4.95091C11.3201 4.92345 11.3903 4.9093 11.4612 4.9093C11.5321 4.9093 11.6023 4.92345 11.6677 4.95091C11.7331 4.97838 11.7923 5.01861 11.842 5.06926C12.05 5.27944 12.0529 5.61909 11.8492 5.83291L7.54879 10.9166C7.49997 10.9703 7.44072 11.0134 7.37467 11.0433C7.30861 11.0732 7.23715 11.0894 7.16465 11.0907C7.09214 11.0921 7.02012 11.0786 6.95299 11.0512C6.88586 11.0238 6.82504 10.9829 6.77423 10.9312L4.15745 8.2795C4.05653 8.17658 4 8.03819 4 7.89404C4 7.7499 4.05653 7.6115 4.15745 7.50858C4.20709 7.45794 4.26633 7.4177 4.3317 7.39024C4.39708 7.36277 4.46728 7.34862 4.53819 7.34862C4.6091 7.34862 4.6793 7.36277 4.74467 7.39024C4.81005 7.4177 4.86929 7.45794 4.91892 7.50858L7.1386 9.75808L11.066 5.08526C11.0705 5.07964 11.0753 5.07429 11.0805 5.06926Z" fill="white"/>
+                            </svg>
+                            Нет в наличии
+                        @endif
+                        </div>
+                    </div>
+                    <div class="product-name">
+                        {{$product->name}}
+                    </div>
+                    <div class="product-price">
+                        {{$product->price}} BYN
+                    </div>
+                    <div class="product-buttons">
+                        <button class="catalog-button">
+                            Купить
+                        </button>
+                        <div class="right-buttons">
+                            <a href="" class="history-icon">
+                                <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M1.68421 30.3158H32V32H0V0H1.68421V30.3158ZM8.42105 13.4737H10.1053V25.2632H8.42105V13.4737ZM16.8421 6.73684H18.5263V25.2632H16.8421V6.73684ZM25.2632 0H26.9474V25.2632H25.2632V0Z" fill="#242424"/>
+                                </svg>
+                            </a>
+                            <a href="" class="favourites-icon">
+                                <svg width="38" height="32" viewBox="0 0 38 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9.21789 0.0900326C4.81969 0.659704 1.18385 3.96882 0.186923 8.30838C-0.0476475 9.33881 -0.0644025 11.3997 0.153413 12.5223C0.664442 15.1193 2.13888 18.0431 4.35893 20.816C5.25532 21.947 8.36338 25.055 9.67027 26.1525C12.2087 28.2552 14.9816 30.1318 17.6624 31.5309C18.1651 31.7989 18.6594 32 18.8018 32C19.229 32 21.6669 30.6428 23.8283 29.2103C26.4421 27.4761 28.3857 25.8677 30.79 23.4633C31.7367 22.5166 32.8425 21.3187 33.2446 20.816C35.4563 18.0514 36.9391 15.1193 37.4501 12.5223C37.6679 11.3997 37.6512 9.33881 37.4166 8.30838C36.5872 4.71442 33.9064 1.73203 30.4633 0.584305C29.4161 0.240828 28.5364 0.0732765 27.3887 0.0230122C24.4817 -0.111027 21.6585 0.952917 19.539 2.99703L18.8018 3.70912L18.0562 2.98865C15.6686 0.726723 12.4767 -0.328842 9.21789 0.0900326ZM12.7867 2.12577C14.7387 2.62004 16.5817 3.85991 17.7546 5.45164C18.2489 6.12185 18.3494 6.18887 18.8018 6.18887C19.2542 6.18887 19.3547 6.12185 19.849 5.45164C21.0218 3.86829 22.8397 2.64518 24.8168 2.11739C25.5289 1.92471 25.797 1.89958 26.9699 1.89958C28.1427 1.89958 28.4108 1.92471 29.1229 2.11739C32.3901 2.98865 34.8615 5.51866 35.6071 8.75239C35.8081 9.63202 35.8165 11.2489 35.6071 12.2207C35.1714 14.3234 34.1326 16.4848 32.5158 18.6797C30.3125 21.6705 26.8442 24.8959 23.1413 27.4259C22.0606 28.1631 20.1589 29.3192 19.2877 29.78L18.8018 30.0313L18.3243 29.78C17.4781 29.3443 15.6016 28.1966 14.5544 27.4929C10.8347 24.9629 7.31619 21.6957 5.08777 18.6797C3.48767 16.51 2.45723 14.3737 1.99647 12.2709C1.77865 11.2573 1.79541 9.54825 2.02998 8.59321C2.89286 5.1333 5.79986 2.49438 9.38544 1.92471C10.2316 1.79067 11.8736 1.8912 12.7867 2.12577Z" fill="#242424"/>
+                                </svg>                                
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            </div>
         </div>
+
+        
         <div class="subscription">
             <form action="">
-                <label for="">Подписаться на рассылку новостей</label>
-                <input type="email" placeholder="Ваш e-mail">
-                <input type="button">
+                <label for="subcs">Подписаться на рассылку новостей</label>
+                <input type="email" id="subsc" name="subsc" placeholder="Ваш e-mail">
+                <button>
+                    Отправить
+                </button>
             </form>
         </div>
-        <div class="footer">
-            <a href="">
-                <img src="{{asset('images/logo.svg')}}" alt="">
-            </a>
-            <div class="footer--nav">
-                <ul>
-                    <li>Ноутбуки</li>
-                    <li>Планшеты</li>
-                    <li>Смартфоны</li>
-                    <li>Наушники</li>
-                    <li>Телевизоры</li>
-                    <li>Аксессуары</li>
-                </ul>
-            </div>
+        <footer>
+            <div class="footer">
+                <div class="footer-top">
+                    <a href="" class="logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M0 0H40V9.39597H0V0ZM12.7711 15.302H40V24.698H12.7711V15.302ZM0 30.604H40V40H0V30.604Z" fill="#B71B34"/>
+                        </svg>
+                        <div class="logo-text">
+                            RUDZPARK
+                        </div>
+                    </a>
+                    <div class="footer-top-nav">
+                        <ul>
+                            <li>Ноутбуки</li>
+                            <li>Планшеты</li>
+                            <li>Смартфоны</li>
+                            <li>Наушники</li>
+                            <li>Телевизоры</li>
+                            <li>Аксессуары</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="footer-bottom">
+                    <ul class="footer-bottom-nav">
+                        <li>Политика конфиденциальности</li>
+                        <li>О компании</li>
+                        <li>Новости</li>
+                        <li>Контакты</li>
+                    </ul>
+                    <div class="copyright">
+                        Copyright © 2001-2023 RudzPark. All rights reserved
+                    </div>
+                </div>
+
+
         </div>
+        </footer>
     </div>
-    
 </body>
 </html>

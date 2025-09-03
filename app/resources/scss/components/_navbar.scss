@@ -8,14 +8,15 @@
         max-width: 1920px;
         box-sizing: border-box;
         margin: 0 auto;
-        scroll-snap-type: inline mandatory; 
-        scroll-behavior: smooth;    
+        // overflow: scroll;
+        // scroll-snap-type: inline mandatory; 
+        // scroll-behavior: smooth;    
         ul{
             display: flex;
             justify-content: space-between;
             list-style: none;
             padding-left: 0;
-            overflow: scroll;
+            // overflow: scroll;
 
             color: #F3F6F9;
             gap: 40px;
@@ -39,6 +40,9 @@
             }
         }
         
+    }
+    @media (max-width: v.$mobile-bp){
+        display: none;
     }
 }
 

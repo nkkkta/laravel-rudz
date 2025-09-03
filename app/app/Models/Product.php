@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model
 {
+    use HasFactory;
 
     // protected $attributes = [
 
@@ -19,14 +22,18 @@ class Product extends Model
         'name',
         'is_available',
         'price',
-        'rating',
+        'image_url'
     ];
 
     protected $casts = [
         'is_available' => 'boolean',
         'price' => 'decimal:2',
-        'rating' => 'decimal:1',
     ];
+
+    public function categories(): BelongsToMany
+    {
+        return $this->belongsToMany(Category::class);
+    }
 
 
 }
