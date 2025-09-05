@@ -35,17 +35,9 @@
         @include('partials.home.features')
         @include('partials.home.category_slider')
         @include('partials.home.product_slider')
+        @include('partials.home.subscription')
+        @include('partials.home.footer')
 
-        
-        <div class="subscription">
-            <form action="">
-                <label for="subcs">Подписаться на рассылку новостей</label>
-                <input type="email" id="subsc" name="subsc" placeholder="Ваш e-mail">
-                <button>
-                    Отправить
-                </button>
-            </form>
-        </div>
         <footer>
             <div class="footer">
                 <div class="footer-top">
