@@ -1,6 +1,10 @@
+@use '../../utils/variables' as v;
+
+
 /*
  *  Owl Carousel - Core
  */
+
 .owl-carousel {
 	display: none;
 	width: 100%;
@@ -123,4 +127,57 @@
 /* No Js */
 .no-js .owl-carousel {
 	display: block;
+}
+
+
+// Project overrided owl-carousel styles
+
+.owl-carousel .owl-nav button.owl-prev,
+.owl-carousel .owl-nav button.owl-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(255, 255, 255, 0.8) !important;
+    color: #333 !important;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 24px !important;
+    line-height: 1 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.owl-carousel .owl-nav button.owl-prev {
+    left: 10px;
+}
+
+.owl-carousel .owl-nav button.owl-next {
+    right: 10px;
+}
+
+.owl-dots {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    @media (max-width: v.$mobile-bp) {
+        bottom: -40px;
+    }
+
+}
+
+.owl-dot {
+    width: 24px !important;
+    height: 3px !important;
+    background-color: #d1d3da !important;
+    transition: background-color 0.3s ease;
+}
+
+.owl-dot.active {
+    background-color: v.$accent-color !important;
 }

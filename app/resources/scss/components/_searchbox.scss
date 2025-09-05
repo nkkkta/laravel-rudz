@@ -1,31 +1,33 @@
 @use '../utils/variables' as v;
 @use '../utils/mixins' as m;
 
-.search-container{
+.searchbox{
     flex: 1;
     @include m.hflex;
     background-color: v.$primary-color;
     padding: .5rem;
-    form{
+    &__inner{
         flex: 1;
         @include m.hflex;
         margin-bottom: 0;
-        input{
-            border: none;
-            outline: none;
-            background-color: transparent;
-            width: 100%;
-            @media (max-width: v.$mobile-bp){
-                font-size: 16px;
-            }
+    }
+    &__input{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        width: 100%;
+        @media (max-width: v.$mobile-bp){
+            font-size: 16px;
         }
-        button{
-            border: none;
-            background-color: transparent;
-        }
+    }
+    &__btn{
+        border: none;
+        background-color: transparent;
     }
     @media (max-width: v.$mobile-bp){
         flex: 1;
-        padding: 1.5rem;
+        padding: 1.5rem;     
     }
 }
+
+

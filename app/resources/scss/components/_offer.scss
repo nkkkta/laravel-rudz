@@ -1,7 +1,7 @@
 @use '../utils/variables' as v;
 @use '../utils/mixins' as m;
 
-.offer-container{
+.offer{
     background-image: linear-gradient(90deg,v.$secondary-color, transparent), url("../../img/stock-laptop.jpg");
     background-repeat: no-repeat;
     background-position: center;
@@ -9,40 +9,35 @@
     max-width: 1920px;
     margin: 0 auto;
     margin-bottom: 70px;
-    .offer{
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        color: v.$primary-color;
-        .content{
-            grid-column: 1 / 1;
-            display: flex;
-            flex-direction: column;
-            margin: 58px 95px 87px 95px;
-            .content__header{
-                font-weight: 700;
-                font-size: 44px;
-                padding-right: 55px;
-                margin-bottom: 18px;
-                margin-top: 0;
-            }
-            .content__description{
-                font-weight: 300;
-                font-size: 18px;
-                line-height: 1.6;
-                margin-bottom: 30px;
-            }
-            .content__button{
-                padding: 16px 20px;
-                background-color: v.$accent-color;
-                color: #FFFFFF;
-                border: none;
-                font-weight: 700;
-                font-size: 20px;
-                width: 50%;
-            }
-        }
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: v.$primary-color;
+    &__inner{
+        grid-column: 1 / 1;
+        display: flex;
+        flex-direction: column;
+        margin: 58px 95px 87px 95px;
     }
-    @media(max-width:v.$mobile-bp){
-        display: none;
+    &__header{
+        font-weight: 700;
+        font-size: 44px;
+        padding-right: 55px;
+        margin-bottom: 18px;
+        margin-top: 0;
+    }
+    &__description{
+        font-weight: 300;
+        font-size: 18px;
+        line-height: 1.6;
+        margin-bottom: 30px;
+    }
+    &__button{
+        padding: 16px 20px;
+        background-color: v.$accent-color;
+        color: #FFFFFF;
+        border: none;
+        font-weight: 700;
+        font-size: 20px;
+        width: 50%;
     }
 }

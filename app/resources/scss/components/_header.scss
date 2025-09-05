@@ -1,58 +1,64 @@
 @use '../utils/mixins' as m;
 @use '../utils/variables' as v;
 
-.header-container{
+.header{
     width: 100%;
-    .header{
+    &__inner{
         // position: relative;
         max-width: 1920px;
         margin: 0 auto;
         @include m.hflex(40px);
         padding: 1.5rem 4rem;
-        &__logo{
-            flex: 1;
-            display: flex;
-            gap: 14px;
-            &__text{
-                font-size: 35px;
-                color: #000;
-                font-weight: 700;
-            }
-            @media (max-width: v.$mobile-bp){
-                display: none;
-            }
-        }
-        .cart-elements{
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            // @include m.hflex;
-            .left{
-                flex: 1;
-                justify-content: start;
-                @include m.hflex(20px, center);
-                @media (max-width: v.$mobile-bp){
-                    display: none;
-                }
-            }
-            .right{
-                flex: 1;
-                display: flex;
-                align-items: center;
-                justify-content: end;
-                gap: 18px;
-                // @include m.hflex(18px, center);
-                .cart-cost{
-                    font-size: 22px;
-                    font-weight: 700;
-                }
-            }
-            @media (max-width: v.$mobile-bp){
-                display: none;
-            }
-        }@media (max-width: v.$mobile-bp){
+        @media (max-width: v.$mobile-bp) {
             padding: 0;
         }
+    }
+    &__logo{
+        flex: 1;
+        display: flex;
+        gap: 14px;
+        &-text{
+            font-size: 35px;
+            color: #000;
+            font-weight: 700;
+            }
+            @media (max-width: v.$mobile-bp){
+                display: none;
+            }
+        }
+    &__icons{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        // @include m.hflex;
+        &-favorites{
+            flex: 1;
+            justify-content: start;
+            @include m.hflex(20px, center);
+            @media (max-width: v.$mobile-bp){
+                display: none;
+            }
+        }
+        &-cart{
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            gap: 18px;
+            // @include m.hflex(18px, center);
+            &-price{
+                font-size: 22px;
+                font-weight: 700;
+            }
+        }
+        @media (max-width: v.$mobile-bp){
+            display: none;
+        }
+    }
+    @media (max-width: v.$mobile-bp) {
+        position: sticky;
+        top: 0;
+        z-index: 99;
     }
 }

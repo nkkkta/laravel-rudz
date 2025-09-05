@@ -1,7 +1,16 @@
+@use '../utils/variables' as v;
+
+
 @mixin hflex($gap: 0px, $jc: space-between){
     display: flex;
     flex-direction: row;
     justify-content: $jc;
     align-items: center;
     gap: $gap;
+}
+
+@mixin respond-to($size){
+    @media (min-width: map-get(v.$breakpoints, $size)){
+        @content;
+    }
 }

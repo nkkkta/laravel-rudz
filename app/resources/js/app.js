@@ -2,13 +2,6 @@
 import jQuery from 'jquery';
 window.$ = window.jQuery = jQuery;
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const toggleButton = document.querySelector('.mobile-menu');
-    const mainLinks = document.querySelector('.pre-header__left');
-
-    toggleButton.addEventListener('click', () => {
-        mainLinks.classList.toggle('is-open');
-    });
 
     await import('./owl.carousel.js');
 
@@ -51,5 +44,3 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         });
     });
-
-});

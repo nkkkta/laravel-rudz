@@ -9,17 +9,12 @@
 <body>
     <div class="main-container">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Администратор</a>
-                <div class="collapse navbar-collapse">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="btn btn-outline-light me-2" href="/">На сайт</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+        <div class="container-fluid d-flex justify-content-between">
+            <a class="navbar-brand" href="{{ route('admin.dashboard') }}">Администратор</a>
+            <a class="btn btn-outline-light me-2" href="/">На сайт</a>
+        </div>
+    </nav>
+    </div>
         <div class="container mt-4">
             @yield('content')
         </div>
